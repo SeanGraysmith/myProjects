@@ -3,6 +3,7 @@
 # Semester:     Spring 2024
 # Assignment:   Data Analysis Project
 # File Name:    data_analysis_project
+# Description: This project takes an input CSV file (must be in a certain format) and uses it to create dataframes which then are used to create visuals such as graphs. 
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
@@ -12,7 +13,7 @@ import matplotlib.ticker as tkr
 
 # Dynamic location reading
 dirname = os.path.dirname(__file__)
-absdir = os.path.join(dirname, r'B104_Team_07_YRBS_data.csv')
+absdir = os.path.join(dirname, r'arbitraryFileName.csv')
 df = pd.read_csv(absdir)
 
 # Cleaning data imported from csv
@@ -273,4 +274,5 @@ while True:
         break 
     else:
         print('Invalid input, exiting...')
+
         break
