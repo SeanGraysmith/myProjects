@@ -1,2 +1,1 @@
-This project is a java project that I created, and the working game (in browser) is located in the links of my main README. 
-      This folder holds the main sourcecode files (with some data removed for privacy purposes). 
+A java project. This folder holds the main sourcecode files (with some data removed for privacy purposes). The link to the working game (in browser) is: https://www.greenfoot.org/scenarios/34403
