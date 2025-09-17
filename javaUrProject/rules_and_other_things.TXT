@@ -1,0 +1,17 @@
+PROJECT TITLE: Ur: A Battle of Kings for The Centuries
+PURPOSE OF PROJECT: University Class
+VERSION or DATE: 12/12/24
+HOW TO START THIS PROJECT: Press the run button
+AUTHORS: Sean Graysmith
+HOW TO PLAY: 
+
+- Players take turns rolling dice and move one piece the amount of spaces for value rolled. 
+- Only one piece can be on a square at a time. 
+- Only one piece can move at at time and you can only move your own pieces forward. 
+- If you land on an occupied square, the opponents piece is moved backwards to the nearest open space (or off the board if needed)
+- You must always move a piece on your turn unless it is not possible
+- If you land on a diamond/gemstone space, that piece is safe while it is there and you may roll again. Upon rolling , choose whether to move one of your piece forward or move an opponents piece backwards for that value. 
+- Pieces can be moved onto the board as long as the space they are going to move to is open. 
+- An exact value is needed to get off of the board. 
+- The start of the movement path is on the first space in the group of two at the top, more info about the movement paths can be seen in the info screen of the game. (Once you reach the main game board screen, press `i`). 
+
