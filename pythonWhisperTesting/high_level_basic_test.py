@@ -40,5 +40,5 @@ print("done")
 
 print("Finalizing document and saving to: " + currentDirectory,end="...",flush=True)
 document.add_paragraph(result["text"])
-document.save(filename+"_transcribed.docx")
+document.save(audioName+"_transcribed.docx")
 print("done..Thanks!")
