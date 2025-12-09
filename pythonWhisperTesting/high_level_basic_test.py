@@ -1,4 +1,4 @@
-#This is a simple script that automates the use of whisper to transcribe a audio file
+#This is a simple script that automates the use of whisper to transcribe an audio file
 #The outfile is the name of the audio file appended with _transcribed.docx
 #Currently only runs in the current directory..more to come soon?
 #
@@ -41,4 +41,5 @@ print("done")
 print("Finalizing document and saving to: " + currentDirectory,end="...",flush=True)
 document.add_paragraph(result["text"])
 document.save(filename+"_transcribed.docx")
+
 print("done..Thanks!")
