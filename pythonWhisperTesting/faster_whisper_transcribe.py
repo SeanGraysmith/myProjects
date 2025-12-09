@@ -1,6 +1,10 @@
 #This is my faster-whisper transcription implementation, notably will ignore silence better than regular whisper
+#Creates and adds timestamps at each segment of speech in form HR:MN:SC
+#Only implements turbo model, work extremely well for webinar style audio samples. 
 #
 #AUTHOR: Sean Graysmith
+print(" ██████╗   ██████╗ \n"+"██╔════╝  ██╔════╝ \n"+"╚█████╗   ██║  ███╗\n"+" ╚═══██╗  ██║   ██║\n"+"██████╔╝  ╚██████╔╝\n"+"╚═════╝    ╚═════╝ ")
+
 
 from faster_whisper import WhisperModel
 from docx import Document
