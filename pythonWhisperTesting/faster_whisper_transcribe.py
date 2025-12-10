@@ -1,6 +1,8 @@
 #This is my faster-whisper transcription implementation, notably will ignore silence better than regular whisper
 #Creates and adds timestamps at each segment of speech in form HR:MN:SC
 #Only implements turbo model, work extremely well for webinar style audio samples. 
+#Relies upon installation of cuda, faster-whisper, probably only works on windows, may need to troubleshot other instllations before it works.
+#https://pypi.org/project/faster-whisper/0.3.0/ for installation and reference
 #
 #AUTHOR: Sean Graysmith
 print(" ██████╗   ██████╗ \n"+"██╔════╝  ██╔════╝ \n"+"╚█████╗   ██║  ███╗\n"+" ╚═══██╗  ██║   ██║\n"+"██████╔╝  ╚██████╔╝\n"+"╚═════╝    ╚═════╝ ")
