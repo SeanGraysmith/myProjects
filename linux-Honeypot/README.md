@@ -90,7 +90,8 @@ These connect directly via SFTP and silently upload a malware file without runni
 ## Malware Samples
 
 Below are samples of malware collected from dropper sessions. Most appear to be trojans designed to run cryptocurrency mining applications silently in the background.
-
+### Sample 1, SHA: 2bddfd2a2be55a42a621a4c234f39e2a5756557f6ec03ef72eb7d1880e1a02fe
 ![Malware sample 1](./images/malware-sample-1.png)
+
+### Sample 2, SHA: 94f2e4d8d4436874785cd14e6e6d403507b8750852f7f2040352069a75da4c00
 ![Malware sample 2](./images/malware-sample-2.png)
-![Malware sample 3](./images/malware-sample-3.png)
