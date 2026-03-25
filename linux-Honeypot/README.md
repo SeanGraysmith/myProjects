@@ -69,7 +69,7 @@ The most active bot on my server attempted **88 username/password combinations**
 uname -s -v -n -r -m
 ```
 
-This command fingerprints the system — OS name, kernel version, hostname, architecture, likely gathering information for a dropper.
+This command fingerprints the system. OS name, kernel version, hostname, architecture, likely gathering information for a dropper.
 
 ---
 
@@ -97,3 +97,34 @@ Below are samples of malware collected from dropper sessions. Most appear to be 
 
 ### Sample 2, SHA: 94f2e4d8d4436874785cd14e6e6d403507b8750852f7f2040352069a75da4c00
 ![Malware sample 2](./images/malware-sample-2.png)
+
+
+
+## Command Execution Breakdown
+
+A reconnaisance bot recently connected to my honeypot and ran a very intricate recon command, here I will break it down:
+
+'''bash
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH\nuname=$(uname -s -v -n -m 2>/dev/null)\narch=$(uname -m 2>/dev/null)\nuptime=$(cat /proc/uptime 2>/dev/null | cut -d. -f1)\ncpus=$( (nproc 2>/dev/null || /usr/bin/nproc 2>/dev/null || grep -c "^processor" /proc/cpuinfo 2>/dev/null) | head -1)\ncpu_model=$( (grep -m1 -E "model name|Hardware" /proc/cpuinfo | cut -d: -f2- | sed \'s/^ *//;s/ *$//\' ; lscpu 2>/dev/null | awk -F: \'/Model name/ {gsub(/^ +| +$/,"",$2); print $2; exit}\' ; dmidecode -s processor-version 2>/dev/null | head -n1 ; uname -p 2>/dev/null) | awk \'NF{print; exit}\' )\ngpu_info=$( (lspci 2>/dev/null | grep -i vga; lspci 2>/dev/null | grep -i nvidia) 2>/dev/null | head -n50)\ncat_help=$( (cat --help 2>&1 | tr \'\\n\' \' \') || cat --help 2>&1)\nls_help=$( (ls --help 2>&1 | tr \'\\n\' \' \') || ls --help 2>&1)\nlast_output=$(last 2>/dev/null | head -n 10)\necho "UNAME:$uname"\necho "ARCH:$arch"\necho "UPTIME:$uptime"\necho "CPUS:$cpus"\necho "CPU_MODEL:$cpu_model"\necho "GPU:$gpu_info"\necho "CAT_HELP:$cat_help"\necho "LS_HELP:$ls_help"\necho "LAST:$last_output"'"
+'''
+
+This command very clearly runs commands to gain information about the target system. 
+
+#### 1. To start, it runs `export` to make sure the following command binaries will be found (like uname), even if the system is in a restricted environment. 
+
+#### 2. Then it gathers the basic system info with `uname (-s: kernel, -v: kernel version, -n hostname, -m architecture)`, and sends errors to the void. 
+
+#### 3. Reads uptime from /proc/uptime with `cat`. 
+
+#### 4. Uses multiple methods to gather CPU info. Tries `nproc` then reads `/usr/bin/nproc` then counts cpu lines in `/proc/cpuinfo` and limits results to one. 
+
+#### 5. Finds CPU model using another chain of commands. Looks in `/proc/cpuinfo`, tries `lscpu`, `dmiencode`, and `uname -p`.
+
+#### 6. Gathers GPU info using `lspci`. lspci returns a list of pci devices, which the command filters using keyword nvidia and vga. 
+
+#### 7. Gets help results from common commands `cat` and `ls`. This is likely another tool for fingerprinting, which can match the result to system versions and even honeypots. 
+
+#### 8. Accesses the last 10 login sessions using `last` and `head`. 
+
+#### 9. Prints the output that was assigned to variables into a nicely formatted list using `echo`. 
+
