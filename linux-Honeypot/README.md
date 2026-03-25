@@ -21,6 +21,8 @@ My honeypot runs on AWS, using the open-source tool [Cowrie](https://docs.cowrie
 
 I configured Cowrie to emulate both SSH (port 22) and Telnet (port 23). When doing this, it's important to move your real SSH service to a non-standard port, and to restrict who can access it. On AWS, this is easy to enforce with a Security Group rule that allows the real SSH port only from your own IP address.
 
+Additionally, cowrie is configured to run on startup.
+
 > **Note:** This guarantees that the only ports visible to real attackers are 22 and 23 — both of which lead to the honeypot services. 
 
 ![AWS Security Group configuration showing ports 22 and 23 open to the internet, real SSH port restricted to my IP](./images/security-group.png)
@@ -33,7 +35,8 @@ I wrote a Python script that tails Cowrie's log file and sends an automated emai
 
 The script fires almost immediately when an attacker connects. This can become noisy during active credential stuffing. I'd recommend using a dedicated email account, or switching to a different notification channel altogether (Slack, Pushover, etc.).
 
-![Example automated email notification showing attacker IP and credentials used](./images/email-notification.png)
+![Example automated email notification showing attacker IP and credentials used](./images/connection-alert.png)
+As you can see, this alert shows the address and credentials used by the address. This one in particular happened around 5am and originates from eastern china. 
 
 To make sure the notification pipeline survives server restarts, I registered the script as a `systemd` service:
 
@@ -48,7 +51,7 @@ The most common traffic I see is from **automated scanning tools**. These bots s
 Notice how rapidly the connections happen, these are absolutely automated:
 
 ![Cowrie log showing rapid automated scanner connections](./images/scanner-log.png)
-
+Here you can see an automated scanner attempts to connect to the telnet server with HTTP credentials. 
 ---
 
 ## Credential Stuffing
