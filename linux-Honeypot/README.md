@@ -50,9 +50,10 @@ The most common traffic I see is from **automated scanning tools**. These bots s
 
 Notice how rapidly the connections happen, these are absolutely automated:
 
-![Cowrie log showing rapid automated scanner connections](./images/scanner-log.png) ---
+![Cowrie log showing rapid automated scanner connections](./images/scanner-log.png) 
 Here you can see an automated scanner attempts to connect to the telnet server with HTTP credentials, and attempts to emulate a real browser. 
 
+---
 
 ## Credential Stuffing
 
