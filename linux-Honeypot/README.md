@@ -79,13 +79,11 @@ Droppers are the most malicious category I've observed. Their sole purpose is to
 
 ### 1. SSH Login Droppers
 
-These connect via SSH and, once authenticated, run a sequence of commands to download and execute a binary. They also attempt to establish persistenc. For example: configuring the executable to run on startup.
-
-![Cowrie session log showing SSH dropper commands](./images/ssh-dropper.png)
+These connect via SSH and, once authenticated, run a sequence of commands to download and execute a binary. They also attempt to establish persistence. For example: configuring the executable to run on startup.
 
 ### 2. SFTP Droppers
 
-These connect directly via SFTP and silently upload a malware file without running any additional commands on the server.
+These connect directly via SFTP and silently upload a malware file, then attempt to connect and execute.
 
 ![Cowrie SFTP log showing file drop](./images/sftp-dropper.png)
 
