@@ -100,12 +100,12 @@ Below are samples of malware collected from dropper sessions. Most appear to be 
 
 
 
-## Command Execution Breakdown
+## Recon Command Execution Breakdown
 
-A reconnaisance bot recently connected to my honeypot and ran a very intricate recon command, here I will break it down:
+A reconnaisance bot recently connected to my honeypot and ran a very intricate series of recon commands, here I will break them down:
 
 
-Single line:
+Original single line:
 ```bash
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH\nuname=$(uname -s -v -n -m 2>/dev/null)\narch=$(uname -m 2>/dev/null)\nuptime=$(cat /proc/uptime 2>/dev/null | cut -d. -f1)\ncpus=$( (nproc 2>/dev/null || /usr/bin/nproc 2>/dev/null || grep -c "^processor" /proc/cpuinfo 2>/dev/null) | head -1)\ncpu_model=$( (grep -m1 -E "model name|Hardware" /proc/cpuinfo | cut -d: -f2- | sed \'s/^ *//;s/ *$//\' ; lscpu 2>/dev/null | awk -F: \'/Model name/ {gsub(/^ +| +$/,"",$2); print $2; exit}\' ; dmidecode -s processor-version 2>/dev/null | head -n1 ; uname -p 2>/dev/null) | awk \'NF{print; exit}\' )\ngpu_info=$( (lspci 2>/dev/null | grep -i vga; lspci 2>/dev/null | grep -i nvidia) 2>/dev/null | head -n50)\ncat_help=$( (cat --help 2>&1 | tr \'\\n\' \' \') || cat --help 2>&1)\nls_help=$( (ls --help 2>&1 | tr \'\\n\' \' \') || ls --help 2>&1)\nlast_output=$(last 2>/dev/null | head -n 10)\necho "UNAME:$uname"\necho "ARCH:$arch"\necho "UPTIME:$uptime"\necho "CPUS:$cpus"\necho "CPU_MODEL:$cpu_model"\necho "GPU:$gpu_info"\necho "CAT_HELP:$cat_help"\necho "LS_HELP:$ls_help"\necho "LAST:$last_output"'"
 ```
@@ -133,7 +133,7 @@ echo "LS_HELP:$ls_help"
 echo "LAST:$last_output"
 ```
 
-This command very clearly runs commands to gain information about the target system. 
+This very clearly runs commands to gain information about the target system. 
 
 #### 1. To start, it runs `export` to make sure the following command binaries will be found (like uname), even if the system is in a restricted environment. 
 
