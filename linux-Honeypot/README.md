@@ -30,7 +30,7 @@ Additionally, cowrie is configured to run on startup.
 
 ## Cowrie Configuration
 
-To configure how and what cowrie runs, you edit the cowrie.cfg file, here I will attach an image of my cowrie.cfg and explain what each line does. 
+To configure how and what cowrie runs, you edit the cowrie.cfg file, here I will attach an image of my cowrie.cfg and explain each section. 
 ![Cowrie configuration file showing setup running telnet and ssh](./images/cowrie-config.png)
 #### 1. The first instruction enables telnet and sets it to listen on port `23` for `any IP` address.
 #### 2. The second instruction sets the ssh server to listen on port `22` for `any IP` address. It also sets the ssh banner to show one matching a modern ubuntu version using `version`. 
