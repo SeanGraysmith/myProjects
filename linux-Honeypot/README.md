@@ -26,16 +26,15 @@ Additionally, cowrie is configured to run on startup.
 > **Note:** This guarantees that the only ports visible to real attackers are 22 and 23 — both of which lead to the honeypot services. 
 
 ![AWS Security Group configuration showing ports 22 and 23 open to the internet, real SSH port restricted to my IP](./images/security-group.png)
-#### 1. The first instruction enables telnet and sets it to listen on port `23` for `any IP` address.
-#### 2. The second instruction sets the ssh server to listen on port `22` for `any IP` address. It also sets the ssh banner to show one matching a modern ubuntu version using `version`. 
-#### 3. The honeypot instruction line sets the hostname of the honeypot system to `ubuntu-24.04.4`. When an attacker logs in they will see the hostname as this. 
-
 ---
 
 ## Cowrie Configuration
 
 To configure how and what cowrie runs, you edit the cowrie.cfg file, here I will attach an image of my cowrie.cfg and explain what each line does. 
 ![Cowrie configuration file showing setup running telnet and ssh](./images/cowrie-config.png)
+#### 1. The first instruction enables telnet and sets it to listen on port `23` for `any IP` address.
+#### 2. The second instruction sets the ssh server to listen on port `22` for `any IP` address. It also sets the ssh banner to show one matching a modern ubuntu version using `version`. 
+#### 3. The honeypot instruction line sets the hostname of the honeypot system to `ubuntu-24.04.4`. When an attacker logs in they will see the hostname as this. 
 
 
 ## Scripting & Notifications
