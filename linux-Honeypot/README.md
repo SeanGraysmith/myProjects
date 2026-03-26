@@ -135,21 +135,19 @@ echo "LAST:$last_output"
 
 This very clearly runs commands to gain information about the target system. 
 
-#### 1. To start, it runs `export` to make sure the following command binaries will be found (like uname), even if the system is in a restricted environment. 
+#### Gathers the basic system info with `uname (-s: kernel, -v: kernel version, -n hostname, -m architecture)`, and sends errors to the void. 
 
-#### 2. Then it gathers the basic system info with `uname (-s: kernel, -v: kernel version, -n hostname, -m architecture)`, and sends errors to the void. 
+#### Reads uptime from /proc/uptime with `cat`. 
 
-#### 3. Reads uptime from /proc/uptime with `cat`. 
+#### Uses multiple methods to gather CPU info. Tries `nproc` then reads `/usr/bin/nproc` then counts cpu lines in `/proc/cpuinfo` and limits results to one. 
 
-#### 4. Uses multiple methods to gather CPU info. Tries `nproc` then reads `/usr/bin/nproc` then counts cpu lines in `/proc/cpuinfo` and limits results to one. 
+#### Finds CPU model using another chain of commands. Looks in `/proc/cpuinfo`, tries `lscpu`, `dmiencode`, and `uname -p`.
 
-#### 5. Finds CPU model using another chain of commands. Looks in `/proc/cpuinfo`, tries `lscpu`, `dmiencode`, and `uname -p`.
+#### Gathers GPU info using `lspci`. lspci returns a list of pci devices, which the command filters using keyword nvidia and vga. 
 
-#### 6. Gathers GPU info using `lspci`. lspci returns a list of pci devices, which the command filters using keyword nvidia and vga. 
+#### Gets help results from common commands `cat` and `ls`. This is likely another tool for fingerprinting, which can match the result to system versions and even honeypots. 
 
-#### 7. Gets help results from common commands `cat` and `ls`. This is likely another tool for fingerprinting, which can match the result to system versions and even honeypots. 
+#### Accesses the last 10 login sessions using `last` and `head`. 
 
-#### 8. Accesses the last 10 login sessions using `last` and `head`. 
-
-#### 9. Prints the output that was assigned to variables into a nicely formatted list using `echo`. 
+#### Prints the output that was assigned to variables into a nicely formatted list using `echo`. 
 
